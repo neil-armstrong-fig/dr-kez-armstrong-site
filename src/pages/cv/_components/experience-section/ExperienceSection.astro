@@ -8,19 +8,29 @@ type Props = {
 };
 
 const {id, title, roles} = Astro.props;
+
+function isCurrent(period: string): boolean {
+  return /present$/i.test(period);
+}
 ---
 
 <section class="experience-section" id={id}>
   <h2>{title}</h2>
   <ol>
     {roles.map((role) => (
-      <li>
+      <li class:list={{current: isCurrent(role.period)}}>
         <div class="role-heading">
           <div>
-            <h3>{role.role}</h3>
-            <p class="organisation">{role.organisation}</p>
+            {role.positions && <h3>{role.organisation}</h3>}
+
+            {!role.positions && <h3>{role.role}</h3>}
+
+            {!role.positions && <p class="organisation">{role.organisation}</p>}
           </div>
-          <p class="period">{role.period}</p>
+          <p class="period">
+            {isCurrent(role.period) && <span class="badge">Current</span>}
+            {role.period}
+          </p>
         </div>
 
         {(role.arrangement || role.location) && (
@@ -29,6 +39,24 @@ const {id, title, roles} = Astro.props;
             {role.arrangement && role.location && <span aria-hidden="true"> · </span>}
             {role.location}
           </p>
+        )}
+
+        {role.positions && (
+          <ol class="positions">
+            {role.positions.map((position) => (
+              <li>
+                <div class="role-heading">
+                  <h4>{position.role}</h4>
+                  <p class="period">
+                    {isCurrent(position.period) && <span class="badge">Current</span>}
+                    {position.period}
+                  </p>
+                </div>
+
+                {position.description && <p class="description">{position.description}</p>}
+              </li>
+            ))}
+          </ol>
         )}
 
         {role.description && <p class="description">{role.description}</p>}
@@ -79,6 +107,24 @@ const {id, title, roles} = Astro.props;
     line-height: 1.35;
   }
 
+  h4 {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .positions {
+    margin-top: 1rem;
+    padding-left: 1.1rem;
+    border-left: 2px solid var(--teal-deep);
+  }
+
+  .positions > li {
+    padding-block: 0.6rem;
+    border-bottom: 0;
+  }
+
   .organisation {
     margin-top: 0.2rem;
     color: var(--teal-deep);
@@ -93,6 +139,25 @@ const {id, title, roles} = Astro.props;
 
   .period {
     white-space: nowrap;
+  }
+
+  ol > li.current {
+    margin-inline: -1rem;
+    padding-inline: calc(1rem - 3px) 1rem;
+    border-left: 3px solid var(--teal-deep);
+    background: color-mix(in srgb, var(--teal-deep) 6%, transparent);
+  }
+
+  .badge {
+    margin-right: 0.5rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: var(--teal-deep);
+    color: var(--paper);
+    font-size: 0.68rem;
+    font-weight: 760;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .context {

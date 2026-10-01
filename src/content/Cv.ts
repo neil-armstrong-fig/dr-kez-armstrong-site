@@ -11,14 +11,22 @@ export type CvSection = {
   readonly items: readonly CvItem[];
 };
 
-export type ExperienceRole = {
+export type ExperiencePosition = {
   readonly role: string;
+  readonly period: string;
+  readonly description?: string;
+};
+
+export type ExperienceRole = {
+  readonly role?: string;
   readonly organisation: string;
   readonly period: string;
   readonly arrangement?: string;
   readonly location?: string;
   readonly description?: string;
   readonly responsibilities?: readonly string[];
+  /** Successive roles at one organisation, newest first. Replaces `role` and `description` when set. */
+  readonly positions?: readonly ExperiencePosition[];
 };
 
 export const skills: readonly string[] = [
@@ -33,10 +41,21 @@ export const skills: readonly string[] = [
 
 export const experience: readonly ExperienceRole[] = [
   {
-    role: "Senior Ecologist (Ornithology)",
     organisation: "Tetra Tech Europe",
-    period: "Jan 2026 – present",
+    period: "Apr 2022 – present",
     arrangement: "Full-time",
+    positions: [
+      {
+        role: "Senior Ecologist (Ornithology)",
+        period: "Jan 2026 – present",
+      },
+      {
+        role: "Ornithologist",
+        period: "Apr 2022 – Jan 2026",
+        description:
+          "Ornithologist and ecologist specialising in breeding bird surveys, waterbird surveys, high- and low-tide counts, WeBS, Phase 1 habitat surveys, avian disturbance and ecological assessments.",
+      },
+    ],
   },
   {
     role: "Specialist Consultant",
@@ -52,14 +71,6 @@ export const experience: readonly ExperienceRole[] = [
     period: "Sep 2023 – present",
     arrangement: "Part-time",
     description: "Part-time lecturer in Biology.",
-  },
-  {
-    role: "Ornithologist",
-    organisation: "Tetra Tech Europe",
-    period: "Apr 2022 – Jan 2026",
-    arrangement: "Full-time",
-    description:
-      "Ornithologist and ecologist specialising in breeding bird surveys, waterbird surveys, high- and low-tide counts, WeBS, Phase 1 habitat surveys, avian disturbance and ecological assessments.",
   },
   {
     role: "PhD Researcher",
