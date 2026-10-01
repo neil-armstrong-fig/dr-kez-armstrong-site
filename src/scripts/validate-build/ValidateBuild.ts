@@ -8,6 +8,7 @@ type CanonicalRoute = {
 
 const distDirectory = new URL("../../../dist/", import.meta.url);
 const canonicalOrigin = "https://kezarmstrong.com";
+const base = (process.env.SITE_BASE ?? "/").replace(/\/+$/, "");
 const canonicalRoutes: readonly CanonicalRoute[] = [
   {route: "/", output: "index.html"},
   {route: "/services/", output: "services/index.html"},
@@ -68,7 +69,9 @@ function validatePage(page: CanonicalRoute, html: string): void {
 async function validateInternalLinks(page: CanonicalRoute, html: string): Promise<void> {
   const links = [...html.matchAll(/href="(\/[^"]*)"/g)].map((match) => match[1]);
 
-  for (const link of links) {
+  for (const rawLink of links) {
+    const link = rawLink && base && rawLink.startsWith(`${base}/`) ? rawLink.slice(base.length) : rawLink;
+
     if (!link || link.startsWith("//") || link.startsWith("/#") || hasStaticExtension(link)) {
       continue;
     }
@@ -91,7 +94,7 @@ async function validateInternalLinks(page: CanonicalRoute, html: string): Promis
 async function validateRedirect(): Promise<void> {
   const html = await readFile(new URL("projects/index.html", distDirectory), "utf8");
 
-  check(html.includes("/about/"), "/projects/ does not redirect to /about/");
+  check(html.includes(`${base}/about/`), "/projects/ does not redirect to /about/");
 }
 
 async function validateSitemap(): Promise<void> {
@@ -105,10 +108,13 @@ async function validateSitemap(): Promise<void> {
   check(sitemapFiles.length > 0, "No sitemap was generated");
 
   for (const page of canonicalRoutes) {
-    check(sitemap.includes(`${canonicalOrigin}${page.route}`), `Sitemap is missing ${page.route}`);
+    check(sitemap.includes(`${canonicalOrigin}${base}${page.route}`), `Sitemap is missing ${page.route}`);
   }
 
-  check(!sitemap.includes(`${canonicalOrigin}/projects/`), "Sitemap includes the legacy /projects/ redirect");
+  check(
+    !sitemap.includes(`${canonicalOrigin}${base}/projects/`),
+    "Sitemap includes the legacy /projects/ redirect",
+  );
 }
 
 function capture(value: string, pattern: RegExp): string | undefined {

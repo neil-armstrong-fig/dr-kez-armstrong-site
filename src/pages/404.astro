@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@src/layouts/BaseLayout.astro";
+import {withBase} from "@src/site/Site";
 ---
 
 <BaseLayout
@@ -11,7 +12,7 @@ import BaseLayout from "@src/layouts/BaseLayout.astro";
     <p class="eyebrow">404 · Off course</p>
     <h1>This page has flown.</h1>
     <p class="lede">The address may have changed, or the page may no longer exist.</p>
-    <a class="button" href="/">
+    <a class="button" href={withBase("/")}>
       Return home
     </a>
   </section>

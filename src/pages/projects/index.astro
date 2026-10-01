@@ -1,16 +1,22 @@
+---
+import {withBase} from "@src/site/Site";
+
+const about = withBase("/about/");
+---
+
 <!doctype html>
 <html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="robots" content="noindex, follow" />
-    <meta http-equiv="refresh" content="0; url=/about/" />
+    <meta http-equiv="refresh" content="0; url={about}" />
     <link rel="canonical" href="https://kezarmstrong.com/about/" />
     <title>About Kez Armstrong</title>
   </head>
   <body>
     <p>
-      This page has moved to <a href="/about/">About Kez Armstrong</a>.
+      This page has moved to <a href={about}>About Kez Armstrong</a>.
     </p>
   </body>
 </html>

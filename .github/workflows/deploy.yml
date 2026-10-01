@@ -33,8 +33,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Build and validate
         run: pnpm build
+        env:
+          # Empty on a custom domain; "/dr-kez-armstrong-site" on the github.io project URL.
+          SITE_BASE: ${{ steps.pages.outputs.base_path }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4

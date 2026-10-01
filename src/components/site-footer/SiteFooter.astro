@@ -1,6 +1,6 @@
 ---
 import BrandMark from "@src/components/brand-mark/BrandMark.astro";
-import {navigation, site} from "@src/site/Site";
+import {navigation, site, withBase} from "@src/site/Site";
 
 const year = new Date().getFullYear();
 ---
@@ -20,7 +20,7 @@ const year = new Date().getFullYear();
       <ul class="footer-links">
         {navigation.map((item) => (
           <li>
-            <a href={item.href}>{item.label}</a>
+            <a href={withBase(item.href)}>{item.label}</a>
           </li>
         ))}
       </ul>

@@ -1,13 +1,13 @@
 ---
 import BrandMark from "@src/components/brand-mark/BrandMark.astro";
-import {navigation, site} from "@src/site/Site";
+import {navigation, site, withBase, withoutBase} from "@src/site/Site";
 
-const currentPath = Astro.url.pathname;
+const currentPath = withoutBase(Astro.url.pathname);
 ---
 
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="identity" href="/" aria-label="Kez Armstrong, home">
+    <a class="identity" href={withBase("/")} aria-label="Kez Armstrong, home">
       <BrandMark class="identity-mark" />
       <span>
         <strong>{site.name}</strong>
@@ -19,7 +19,7 @@ const currentPath = Astro.url.pathname;
       <ul class="site-nav">
         {navigation.map((item) => (
           <li>
-            <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+            <a href={withBase(item.href)} aria-current={currentPath === item.href ? "page" : undefined}>
               {item.label}
             </a>
           </li>

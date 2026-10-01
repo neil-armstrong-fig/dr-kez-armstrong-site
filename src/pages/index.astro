@@ -5,6 +5,7 @@ import portrait from "@src/assets/images/kez-armstrong-portrait.jpg";
 import ContactPanel from "@src/components/contact-panel/ContactPanel.astro";
 import {services} from "@src/content/Services";
 import BaseLayout from "@src/layouts/BaseLayout.astro";
+import {withBase} from "@src/site/Site";
 ---
 
 <BaseLayout
@@ -20,10 +21,10 @@ import BaseLayout from "@src/layouts/BaseLayout.astro";
         of Ireland.
       </p>
       <div class="button-row">
-        <a class="button" href="/services/">
+        <a class="button" href={withBase("/services/")}>
           Explore services
         </a>
-        <a class="text-link" href="/contact/">
+        <a class="text-link" href={withBase("/contact/")}>
           Discuss a project <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -94,7 +95,7 @@ import BaseLayout from "@src/layouts/BaseLayout.astro";
           <p class="eyebrow">How I can help</p>
           <h2>Specialist support for ecological work.</h2>
         </div>
-        <a class="text-link" href="/services/">
+        <a class="text-link" href={withBase("/services/")}>
           All services <span aria-hidden="true">→</span>
         </a>
       </header>
@@ -126,7 +127,7 @@ import BaseLayout from "@src/layouts/BaseLayout.astro";
         Kez completed her PhD at Queen's University Belfast, researching the ecology of this familiar—but
         declining—small falcon.
       </p>
-      <a class="text-link" href="/kestrels-ni/">
+      <a class="text-link" href={withBase("/kestrels-ni/")}>
         Explore Kestrels NI <span aria-hidden="true">→</span>
       </a>
     </div>
