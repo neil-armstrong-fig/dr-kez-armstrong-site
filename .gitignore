@@ -1,0 +1,12 @@
+node_modules/
+.astro/
+dist/
+.lighthouseci/
+*.log
+.DS_Store
+
+# Private source material must never be committed or deployed.
+/private-source/
+
+# Stray Windows-style directories created by Chrome under WSL.
+/C:*

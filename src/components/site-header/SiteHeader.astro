@@ -1,0 +1,30 @@
+---
+import BrandMark from "@src/components/brand-mark/BrandMark.astro";
+import {navigation, site} from "@src/site/Site";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="identity" href="/" aria-label="Kez Armstrong, home">
+      <BrandMark class="identity-mark" />
+      <span>
+        <strong>{site.name}</strong>
+        <small>{site.descriptor}</small>
+      </span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul class="site-nav">
+        {navigation.map((item) => (
+          <li>
+            <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f5f2e9"/>
+  <circle cx="1080" cy="30" r="300" fill="#15b6b8" opacity=".18"/>
+  <path d="M770 265c75-12 132-48 190-118-9 57 3 98 43 130 39-32 51-73 42-130 59 70 116 106 190 118-69 13-130 7-187-21 40 40 63 87 67 143-49-31-88-69-112-113-25 44-63 82-113 113 5-56 27-103 67-143-57 28-118 34-187 21Z" fill="none" stroke="#0c8384" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="90" y="250" fill="#086b70" font-family="Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="4">ORNITHOLOGIST · ECOLOGICAL CONSULTANT</text>
+  <text x="90" y="350" fill="#202a30" font-family="Georgia, serif" font-size="84">Kez Armstrong</text>
+  <text x="90" y="414" fill="#354156" font-family="Georgia, serif" font-size="36">Field knowledge, thoughtfully applied.</text>
+</svg>

@@ -1,0 +1,274 @@
+---
+import {Image} from "astro:assets";
+
+import infographic from "@src/assets/images/common-kestrel-infographic.jpg";
+import fieldwork from "@src/assets/images/kestrel-fieldwork.jpg";
+import ContactPanel from "@src/components/contact-panel/ContactPanel.astro";
+import PageIntro from "@src/components/page-intro/PageIntro.astro";
+import BaseLayout from "@src/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Kestrels NI"
+  description="Learn about Common Kestrels in Ireland, why their decline matters, and how to report a kestrel sighting."
+>
+  <PageIntro
+    eyebrow="Kestrels NI"
+    title="A familiar falcon we still need to understand."
+    summary="Kez completed her PhD at Queen's University Belfast, researching the ecology of the Common Kestrel in Ireland under the supervision of Dr Paul Caplat."
+    width="wide"
+  />
+
+  <section class="shell kestrel-opening">
+    <figure>
+      <Image
+        src={fieldwork}
+        alt="Kez Armstrong carefully measuring a kestrel chick during fieldwork"
+        widths={[560, 840, 1120]}
+        sizes="(max-width: 760px) 100vw, 48vw"
+        format="avif"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <figcaption>
+        Field measurements contribute to a better picture of kestrel ecology in Ireland.
+      </figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>
+        Although a small, relatively easy falcon to see on the island of Ireland, sightings are rarely
+        reported.
+      </p>
+      <p>
+        They are commonly seen hovering with a splayed tail, hunting for small mammals, insects and
+        occasionally small birds. They are found in a variety of open habitats, including farmland, moorland,
+        coasts, wetlands, roadside verges and parks.
+      </p>
+      <p>
+        The PhD research was completed at <a href="https://www.qub.ac.uk/">Queen's University Belfast</a>
+        under the supervision of <a href="https://paulcaplat.weebly.com/">Dr Paul Caplat</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="sighting-band">
+    <div class="shell sighting-grid">
+      <div>
+        <p class="eyebrow">Take part</p>
+        <h2>Have you seen a kestrel?</h2>
+      </div>
+      <div>
+        <p class="lede">
+          Help build the evidence by recording sightings where you live or while you are out and about.
+        </p>
+        <div class="button-row">
+          <a class="button button--light" href="https://www.raptormonitor.com/">
+            Report via RaptorMonitor
+          </a>
+          <a class="text-link text-link--light" href="https://www.bto.org/our-science/projects/birdtrack">
+            Use BTO BirdTrack <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section shell why-grid">
+    <div class="sticky-heading">
+      <p class="eyebrow">Why this matters</p>
+      <h2>Decline is a signal from the wider landscape.</h2>
+    </div>
+    <div class="prose">
+      <p>
+        Kestrels are declining on the island of Ireland. They are encountered too infrequently in Breeding
+        Bird Surveys for annual trend indices to be generated in Northern Ireland. In the Republic of Ireland,
+        the assessment cited by the original project reported an annual rate of decline greater than 3% per
+        year.
+      </p>
+      <p>
+        There is growing evidence that changes in land-use practices are reducing prey availability,
+        increasing persecution and contributing to a decline in reproductive success. Other possible factors
+        include intra-guild predation rates increasing with rises in populations of other raptors and corvids.
+      </p>
+      <p>
+        Kestrels provide essential ecosystem services on agricultural land through pest control—eating small
+        mammals—and can indicate the health of an ecosystem. By understanding what is happening to their
+        population, we can gather information about the other animals that depend on this habitat for at least
+        part of their life cycle.
+      </p>
+      <p class="source-note">
+        Population context:
+        <a href="https://birdwatchireland.ie/app/uploads/2019/09/BOCCI.pdf">
+          Birds of Conservation Concern in Ireland
+        </a>
+        .
+      </p>
+    </div>
+  </section>
+
+  <section class="infographic-section">
+    <div class="shell infographic-grid">
+      <div>
+        <p class="eyebrow">Field guide</p>
+        <h2>The Common Kestrel in Ireland.</h2>
+        <p class="lede">Falco tinnunculus · Pocaire gaoithe</p>
+      </div>
+
+      <div>
+        <a href={infographic.src} aria-label="Open the Common Kestrel infographic at full size">
+          <Image
+            src={infographic}
+            alt="Illustrated Common Kestrel guide; a full text transcript follows"
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 760px) 100vw, 60vw"
+            format="webp"
+          />
+        </a>
+
+        <details>
+          <summary>Read the infographic transcript</summary>
+          <div class="prose transcript">
+            <h3>The Common Kestrel in Ireland</h3>
+            <p>
+              <em>Falco tinnunculus</em> · Pocaire gaoithe
+            </p>
+            <p>
+              Once a familiar sight above fields and motorway verges, the kestrel population in the UK has
+              declined by 50% in the past twenty years, and in Ireland they are declining by more than 3% per
+              year. These figures reproduce the wording of the original project infographic and should be read
+              in its publication context.
+            </p>
+            <p>
+              The female has a brown head, barred back and wings, brown wing tips and a barred tail. The male
+              has a grey head, black-spotted back and wings, black wing tips, a grey tail, streaked chest and
+              yellow feet.
+            </p>
+            <ul>
+              <li>Although a small-mammal specialist, in Ireland they depend on avian prey.</li>
+              <li>
+                They face pressures from landscape change such as deforestation and agricultural
+                intensification.
+              </li>
+              <li>They lay four to six eggs and fledge three to four chicks on average.</li>
+              <li>
+                They have a wide geographic range; however, little is known about distribution and behaviour
+                across Ireland.
+              </li>
+            </ul>
+            <p>
+              What can you do to help? Report all kestrel sightings to Raptor Study Groups and use BTO
+              BirdTrack. Contact: kestrelsNI@gmail.com.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <ContactPanel
+    heading="Have a kestrel research or ecology question?"
+    message="For research, collaboration or specialist ecological support, contact Kez directly."
+  />
+</BaseLayout>
+
+<style>
+  .kestrel-opening,
+  .why-grid,
+  .sighting-grid,
+  .infographic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 8vw, 8rem);
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  figure :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  figcaption,
+  .source-note {
+    margin-top: 0.7rem;
+    color: var(--slate);
+    font-size: 0.76rem;
+  }
+
+  .sighting-band {
+    margin-top: clamp(4rem, 10vw, 9rem);
+    padding-block: clamp(3rem, 7vw, 6rem);
+    color: var(--paper);
+    background: var(--teal-deep);
+  }
+
+  .sighting-grid .eyebrow {
+    color: white;
+  }
+
+  .sighting-grid .lede {
+    color: white;
+  }
+
+  .sighting-grid .button-row {
+    margin-top: 2rem;
+  }
+
+  .sticky-heading {
+    align-self: start;
+  }
+
+  .infographic-section {
+    padding-block: clamp(4rem, 9vw, 8rem);
+    background: var(--paper-deep);
+  }
+
+  .infographic-grid {
+    grid-template-columns: 0.55fr 1.45fr;
+  }
+
+  .infographic-grid :global(img) {
+    width: 100%;
+    box-shadow: 0 1rem 4rem rgb(32 42 48 / 0.12);
+  }
+
+  details {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  summary {
+    padding-block: 1rem;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .transcript {
+    padding-block: 0.5rem 2rem;
+  }
+
+  .transcript ul {
+    padding-left: 1.2rem;
+  }
+
+  @media (min-width: 761px) {
+    .sticky-heading {
+      position: sticky;
+      top: 2rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .kestrel-opening,
+    .why-grid,
+    .sighting-grid,
+    .infographic-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

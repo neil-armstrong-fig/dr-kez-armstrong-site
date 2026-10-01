@@ -1,0 +1,128 @@
+---
+import type {ExperienceRole} from "@src/content/Cv";
+
+type Props = {
+  id: string;
+  title: string;
+  roles: readonly ExperienceRole[];
+};
+
+const {id, title, roles} = Astro.props;
+---
+
+<section class="experience-section" id={id}>
+  <h2>{title}</h2>
+  <ol>
+    {roles.map((role) => (
+      <li>
+        <div class="role-heading">
+          <div>
+            <h3>{role.role}</h3>
+            <p class="organisation">{role.organisation}</p>
+          </div>
+          <p class="period">{role.period}</p>
+        </div>
+
+        {(role.arrangement || role.location) && (
+          <p class="context">
+            {role.arrangement}
+            {role.arrangement && role.location && <span aria-hidden="true"> · </span>}
+            {role.location}
+          </p>
+        )}
+
+        {role.description && <p class="description">{role.description}</p>}
+
+        {role.responsibilities && (
+          <ul class="responsibilities">
+            {role.responsibilities.map((responsibility) => (
+              <li>{responsibility}</li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .experience-section + .experience-section {
+    margin-top: 5rem;
+  }
+
+  h2 {
+    padding-bottom: 1.2rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ol > li {
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .role-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 760;
+    line-height: 1.35;
+  }
+
+  .organisation {
+    margin-top: 0.2rem;
+    color: var(--teal-deep);
+    font-weight: 700;
+  }
+
+  .period,
+  .context {
+    color: var(--slate);
+    font-size: 0.78rem;
+  }
+
+  .period {
+    white-space: nowrap;
+  }
+
+  .context {
+    margin-top: 0.45rem;
+    text-transform: capitalize;
+  }
+
+  .description {
+    max-width: 43rem;
+    margin-top: 0.8rem;
+    color: var(--slate);
+    font-size: 0.9rem;
+  }
+
+  .responsibilities {
+    max-width: 43rem;
+    margin: 0.8rem 0 0;
+    padding-left: 1.1rem;
+    color: var(--slate);
+    font-size: 0.84rem;
+  }
+
+  .responsibilities li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (max-width: 560px) {
+    .role-heading {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import {site} from "@src/site/Site";
+
+type Props = {
+  heading?: string;
+  message?: string;
+};
+
+const {
+  heading = "Discuss a project",
+  message = "If you need specialist ornithological input, practical field experience or careful ecological reporting, get in touch.",
+} = Astro.props;
+---
+
+<aside class="contact-panel" aria-labelledby="contact-panel-title">
+  <div>
+    <p class="eyebrow">Start a conversation</p>
+    <h2 id="contact-panel-title">{heading}</h2>
+    <p>{message}</p>
+  </div>
+
+  <div class="button-row">
+    <a class="button button--light" href={`mailto:${site.email}`}>
+      Email Kez
+    </a>
+    <a class="text-link text-link--light" href={site.linkedin}>
+      Connect on LinkedIn <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</aside>

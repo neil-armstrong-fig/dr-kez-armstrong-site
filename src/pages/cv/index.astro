@@ -1,0 +1,236 @@
+---
+import ContactPanel from "@src/components/contact-panel/ContactPanel.astro";
+import PageIntro from "@src/components/page-intro/PageIntro.astro";
+import {conferences, cvSections, experience, memberships, skills, volunteering} from "@src/content/Cv";
+import BaseLayout from "@src/layouts/BaseLayout.astro";
+import ExperienceSection from "@src/pages/cv/_components/experience-section/ExperienceSection.astro";
+import {site} from "@src/site/Site";
+---
+
+<BaseLayout
+  title="CV"
+  description="Kez Armstrong's ecological employment, volunteering, qualifications, skills, honours, memberships, media and publications."
+>
+  <PageIntro
+    eyebrow="Curriculum vitae"
+    title="Research, fieldwork and ecological practice."
+    summary="A professional record shaped by ornithology, raptor ecology, bird ringing and the practical communication of evidence."
+    width="wide"
+  />
+
+  <aside class="shell cv-current" aria-label="Latest professional profile">
+    <p>
+      <strong>Looking for the latest update?</strong> LinkedIn is the most current record of Kez's
+      professional experience.
+    </p>
+    <a class="text-link" href={site.linkedin}>
+      View Kez on LinkedIn <span aria-hidden="true">↗</span>
+    </a>
+  </aside>
+
+  <div class="shell cv-layout">
+    <aside class="cv-sidebar">
+      <p class="eyebrow">At a glance</p>
+      <h2>Skills</h2>
+      <ul>
+        {skills.map((skill) => (
+          <li>{skill}</li>
+        ))}
+      </ul>
+    </aside>
+
+    <div class="cv-main">
+      <ExperienceSection id="experience" title="Experience" roles={experience} />
+
+      <ExperienceSection id="volunteering" title="Volunteering" roles={volunteering} />
+
+      {cvSections.map((section) => (
+        <section id={section.id} class="cv-section">
+          <h2>{section.title}</h2>
+          <ol>
+            {section.items.map((item) => (
+              <li>
+                <div>
+                  {item.href && <a href={item.href}>{item.title}</a>}
+                  {!item.href && <strong>{item.title}</strong>}
+                  {item.detail && <span>{item.detail}</span>}
+                </div>
+                {item.date && <time>{item.date}</time>}
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+
+      <section class="cv-section" id="memberships">
+        <h2>Memberships</h2>
+        <ul class="membership-grid">
+          {memberships.map((membership) => (
+            <li>{membership}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="cv-section" id="conferences">
+        <h2>Conferences</h2>
+        <ol class="conference-list">
+          {conferences.map((conference) => (
+            <li>
+              <strong>{conference.title}</strong>
+              <time>{conference.date}</time>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </div>
+  </div>
+
+  <ContactPanel heading="Looking for a specialist collaborator?" />
+</BaseLayout>
+
+<style>
+  .cv-current {
+    display: flex;
+    margin-top: -2rem;
+    margin-bottom: clamp(3rem, 7vw, 6rem);
+    padding-block: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    color: var(--slate);
+    font-size: 0.88rem;
+  }
+
+  .cv-current strong {
+    color: var(--ink);
+  }
+
+  .cv-current a {
+    flex: 0 0 auto;
+    color: var(--teal-deep);
+  }
+
+  .cv-layout {
+    display: grid;
+    padding-bottom: clamp(4rem, 9vw, 8rem);
+    grid-template-columns: minmax(15rem, 0.55fr) minmax(0, 1.45fr);
+    gap: clamp(3rem, 9vw, 9rem);
+  }
+
+  .cv-sidebar {
+    align-self: start;
+    padding: 2rem;
+    color: white;
+    background: var(--teal-deep);
+  }
+
+  .cv-sidebar .eyebrow {
+    color: white;
+  }
+
+  .cv-sidebar h2 {
+    font-size: 2.3rem;
+  }
+
+  .cv-sidebar ul {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cv-sidebar li {
+    padding-block: 0.7rem;
+    border-top: 1px solid rgb(245 242 233 / 0.2);
+    font-size: 0.86rem;
+  }
+
+  .cv-section + .cv-section {
+    margin-top: 5rem;
+  }
+
+  .cv-main > .cv-section {
+    margin-top: 5rem;
+  }
+
+  .cv-section h2 {
+    padding-bottom: 1.2rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .cv-section ol,
+  .cv-section ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cv-section ol > li,
+  .membership-grid li {
+    display: grid;
+    padding-block: 1.2rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cv-section strong,
+  .cv-section a,
+  .cv-section span {
+    display: block;
+  }
+
+  .cv-section a {
+    color: var(--teal-deep);
+    font-weight: 700;
+  }
+
+  .cv-section span {
+    margin-top: 0.2rem;
+    color: var(--slate);
+    font-size: 0.82rem;
+  }
+
+  .cv-section time {
+    color: var(--slate);
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .membership-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+
+  .membership-grid li {
+    display: block;
+    font-size: 0.88rem;
+  }
+
+  @media (min-width: 761px) {
+    .cv-sidebar {
+      position: sticky;
+      top: 2rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .cv-current {
+      margin-top: -1rem;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .cv-layout,
+    .membership-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cv-section ol > li {
+      gap: 1rem;
+    }
+  }
+</style>

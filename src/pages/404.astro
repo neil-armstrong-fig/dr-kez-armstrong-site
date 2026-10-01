@@ -1,0 +1,29 @@
+---
+import BaseLayout from "@src/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The requested page could not be found on the Kez Armstrong website."
+  noindex
+>
+  <section class="shell not-found">
+    <p class="eyebrow">404 · Off course</p>
+    <h1>This page has flown.</h1>
+    <p class="lede">The address may have changed, or the page may no longer exist.</p>
+    <a class="button" href="/">
+      Return home
+    </a>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 65vh;
+    padding-block: clamp(5rem, 12vw, 10rem);
+  }
+
+  .not-found .lede {
+    margin: 1.5rem 0 2rem;
+  }
+</style>

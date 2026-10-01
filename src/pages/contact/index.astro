@@ -1,0 +1,123 @@
+---
+import PageIntro from "@src/components/page-intro/PageIntro.astro";
+import BaseLayout from "@src/layouts/BaseLayout.astro";
+import {site} from "@src/site/Site";
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Kez Armstrong about ornithological consultancy, ecological reporting, bird-ringing training or research collaboration."
+>
+  <PageIntro
+    eyebrow="Contact"
+    title="Let's talk about your project."
+    summary="For consultancy, research collaboration, training or media enquiries, contact Kez directly by email or LinkedIn."
+  />
+
+  <section class="shell contact-grid">
+    <a class="contact-card" href={`mailto:${site.email}`}>
+      <span class="eyebrow">Email</span>
+      <h2>{site.email}</h2>
+      <p>The best route for project briefs, availability and detailed enquiries.</p>
+      <strong>
+        Write an email <span aria-hidden="true">→</span>
+      </strong>
+    </a>
+
+    <a class="contact-card contact-card--dark" href={site.linkedin}>
+      <span class="eyebrow">LinkedIn</span>
+      <h2>Connect professionally</h2>
+      <p>View Kez's experience and make contact through LinkedIn.</p>
+      <strong>
+        Open LinkedIn <span aria-hidden="true">↗</span>
+      </strong>
+    </a>
+  </section>
+
+  <section class="page-section shell contact-note">
+    <div>
+      <p class="eyebrow">Useful context</p>
+      <h2>What to include.</h2>
+    </div>
+    <div class="prose">
+      <p>
+        A short outline of the site, species, timescale and support you need is helpful. If the scope is still
+        taking shape, that is fine too—an initial conversation can help identify the right next step.
+      </p>
+      <p>
+        This first version intentionally uses direct contact links. A privacy-conscious contact form will be
+        added later using the same Cloudflare-based approach as the related personal site.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-card {
+    display: flex;
+    min-height: 25rem;
+    padding: clamp(2rem, 5vw, 4rem);
+    flex-direction: column;
+    border: 1px solid var(--line);
+    background: var(--paper-deep);
+    text-decoration: none;
+    transition: transform 180ms ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-0.35rem);
+  }
+
+  .contact-card h2 {
+    overflow-wrap: anywhere;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+  }
+
+  .contact-card p {
+    max-width: 31rem;
+    margin-top: 1.3rem;
+    color: var(--slate);
+  }
+
+  .contact-card strong {
+    margin-top: auto;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .contact-card--dark {
+    color: var(--paper);
+    background: var(--teal-deep);
+  }
+
+  .contact-card--dark .eyebrow {
+    color: white;
+  }
+
+  .contact-card--dark p {
+    color: rgb(255 255 255 / 0.92);
+  }
+
+  .contact-note {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 7vw, 7rem);
+  }
+
+  @media (max-width: 760px) {
+    .contact-grid,
+    .contact-note {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+      min-height: 20rem;
+    }
+  }
+</style>

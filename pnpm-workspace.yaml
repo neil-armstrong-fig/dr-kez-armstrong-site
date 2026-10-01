@@ -1,0 +1,7 @@
+packages:
+  - .
+
+# The optional platform packages already provide these binaries; their install checks are unnecessary.
+allowBuilds:
+  esbuild: false
+  sharp: false

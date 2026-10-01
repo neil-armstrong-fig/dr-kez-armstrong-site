@@ -1,0 +1,16 @@
+---
+type Props = {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  width?: "standard" | "wide";
+};
+
+const {eyebrow, title, summary, width = "standard"} = Astro.props;
+---
+
+<header class:list={["page-intro", width === "wide" && "page-intro--wide"]}>
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{title}</h1>
+  <p class="lede">{summary}</p>
+</header>

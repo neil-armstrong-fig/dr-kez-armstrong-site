@@ -1,0 +1,53 @@
+---
+import BrandMark from "@src/components/brand-mark/BrandMark.astro";
+import {navigation, site} from "@src/site/Site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="footer-identity">
+      <BrandMark />
+      <div>
+        <strong>{site.name}</strong>
+        <p>Specialist ornithology and ecological consultancy across the island of Ireland.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2>Explore</h2>
+      <ul class="footer-links">
+        {navigation.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h2>Connect</h2>
+      <ul class="footer-links">
+        <li>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+        <li>
+          <a href={site.linkedin} rel="me">
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href={site.twitter} rel="me">
+            X / Twitter
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="shell footer-smallprint">
+    <p>© {year} Kez Armstrong. Content and photography rights reserved.</p>
+    <p>Built as a fast, accessible static site.</p>
+  </div>
+</footer>

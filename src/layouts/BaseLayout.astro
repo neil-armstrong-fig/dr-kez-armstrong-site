@@ -1,0 +1,62 @@
+---
+import SiteFooter from "@src/components/site-footer/SiteFooter.astro";
+import SiteHeader from "@src/components/site-header/SiteHeader.astro";
+import {site} from "@src/site/Site";
+import "@src/styles/global.css";
+
+type Props = {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+};
+
+const {title, description, image = "/social-card.svg", noindex = false} = Astro.props;
+const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname, site.origin);
+const socialImage = new URL(image, site.origin);
+const personNode = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: site.origin,
+  jobTitle: "Ornithologist and ecological consultant",
+  sameAs: [site.linkedin, site.twitter],
+  knowsAbout: ["Ornithology", "Raptor ecology", "Bird ringing", "Ecological consultancy", "GIS"],
+};
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f2e9" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(personNode)}></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">
+      Skip to main content
+    </a>
+    <SiteHeader />
+    <main id="main-content">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
